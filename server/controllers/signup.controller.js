@@ -2,8 +2,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const User = require("../models/user.model.js");
 var bcrypt = require("bcryptjs");
+const erroronsignup=require('../utils/erroronsignup.js');
 var salt = bcrypt.genSaltSync(10);
-exports.signup = async (req, res) => {
+exports.signup = async (req, res,next) => {
   try {
     const body = req.body;
     const { username, email, password } = body;
@@ -15,11 +16,7 @@ exports.signup = async (req, res) => {
       email === "" ||
       password === ""
     ) {
-      return res.status(400).json({
-        Outcome: "Failed",
-        Status: 400,
-        message: "All credentials are required",
-      });
+      return res.status(400).json({message:"All credentials are required",status:400});
     }
     const hashedpassword = bcrypt.hashSync(password, salt);
     const newuser = await User.create({
@@ -32,6 +29,7 @@ exports.signup = async (req, res) => {
       return res.status(200).json({ Message: "Success", status: 200, newuser });
     }
   } catch (error) {
-    res.status(404).json({ status: 404, error });
+    res.status(404).json({ status: 404, message:error });
+    next(error);
   }
 };

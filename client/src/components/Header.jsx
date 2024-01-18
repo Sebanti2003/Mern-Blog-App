@@ -1,6 +1,6 @@
 import { Button, Navbar, TextInput } from "flowbite-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link ,useLocation} from "react-router-dom";
 import { IoMenu, IoMoon, IoSearch } from "react-icons/io5";
 import { IoSunny } from "react-icons/io5";
 const Header = () => {
@@ -52,7 +52,7 @@ const Header = () => {
         </div>
        
         <Button outline gradientDuoTone="purpleToBlue" className="font-bold max-lg:hidden">
-          Sign In
+          {useLocation().pathname==="/signup"?"Sign In":"sign up"}
         </Button>
         <IoMenu onClick={()=>setdrop(e=>!e)} className="hidden max-lg:block text-4xl rounded-full border-[1px] p-1 border-slate-200 dark:border-slate-700"/>
       </Navbar>
