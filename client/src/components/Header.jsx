@@ -51,7 +51,7 @@ const Header = () => {
         >
           {theme ? <IoMoon /> : <IoSunny />}
         </Button>
-        <div className="max-lg:hidden flex  gap-24 h-full">
+        <div className="max-lg:hidden flex  gap-20 h-full">
           <Link to="/">Home</Link>
           <Link to={"/about"}>About</Link>
           <Link to="/projects">Projects</Link>
