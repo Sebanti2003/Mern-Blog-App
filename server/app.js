@@ -5,6 +5,7 @@ const TestRouter=require('./routes/test.js')
 const Signup=require('./routes/signup.js');
 const Signinrouter=require('./routes/signin.js')
 const {hi}=require('./middlewares/hi.js');
+const GoogleAuth = require("./routes/googleauth.js");
 
 
 //important middlewares
@@ -23,7 +24,7 @@ app.use('/api/users',hi)
 //auth routes
 app.use('/api/users',Signup);
 app.use('/api/users',Signinrouter);
-
+app.use('/api/google',GoogleAuth)
 
 
 module.exports=app;
